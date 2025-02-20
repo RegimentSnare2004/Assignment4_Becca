@@ -14,30 +14,33 @@ public class Problem5 {
 
     public static String decodeString(String s) {
         String result = "";
-        Stack<Integer> stack = new Stack<Integer>();
-        for (int i = 0; i < s.length(); i++) {
+        Stack<Integer> stackCount = new Stack<>();
+        Stack<String> resStack = new Stack<>();
+        int i = 0;
+        while (i < s.length()) {
             if (Character.isDigit(s.charAt(i))) {
-                stack.push(s.charAt(i)-'0');
+                stackCount.push(s.charAt(i)-'0');
+                i++;
             }
-            else if (s.charAt(i) == '[') {
-                String toAdd = "";
-                int j = i + 1;
-
-                while (s.charAt(j) != ']') {
-                    toAdd += s.charAt(j);
-                    j++;
-                    i++;
-                }
-
-                int count = 0;
-                if(!stack.isEmpty()) {
-                    while (count < stack.pop()) {
-                        result += toAdd;
-                        count++;
-                    }
-                }
-
+            else if(s.charAt(i) == '['){
+                resStack.push(result);
+                result = "";
+                i++;
             }
+            else if(s.charAt(i) == ']'){
+                StringBuilder temp = new StringBuilder(resStack.pop());
+                int numRepeat = stackCount.pop();
+                for(int j = 0; j < numRepeat; j++){
+                    temp.append(result);
+                }
+                result = temp.toString();
+                i++;
+            }
+            else{
+                result += s.charAt(i);
+                i++;
+            }
+
 
         }
         return result;
