@@ -15,7 +15,7 @@ public class Problem4 {
 
     public static String isBalanced(String s){
         boolean answer = true;
-        Stack<Character> stack = new Stack<Character>();
+        Stack<Character> stack = new Stack<>();
         for(int i = 0; i < s.length(); i++){
             if(s.charAt(i) == '{' || s.charAt(i) == '[' || s.charAt(i) == '('){
                 stack.push(s.charAt(i));

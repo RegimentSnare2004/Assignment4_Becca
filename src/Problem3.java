@@ -4,7 +4,7 @@ import java.util.LinkedList;
 public class Problem3 {
 
     public static void main(String[] args){
-        Deque<Integer> q = new LinkedList<Integer>();
+        Deque<Integer> q = new LinkedList<>();
         q.add(6);
         q.add(7);
         q.add(6);
